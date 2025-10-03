@@ -1,0 +1,13 @@
+{
+  "plugins": ["stylelint-high-performance-animation"],
+  "extends": "stylelint-config-standard-scss",
+  "rules": {
+    "plugin/no-low-performance-animation-properties": [true, {
+      "ignore": "paint-properties"
+    }],
+    "no-descending-specificity": null,
+    "selector-class-pattern": null,
+    "selector-not-notation": null,
+    "media-feature-range-notation": null
+  }
+}

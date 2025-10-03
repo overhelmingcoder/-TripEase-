@@ -1,234 +1,99 @@
-# 🌤️ TripEase - AI-Powered Weather & Travel Assistant
+# [NASA Worldview](https://worldview.earthdata.nasa.gov)
 
-TripEase is a Next.js 14 weather and travel assistant powered by AI. Built with modern web technologies, it provides comprehensive weather forecasting, interactive maps, and intelligent travel recommendations to help users plan their perfect trips.
+[![Worldview Screenshot](/web/images/readme-preview.jpg)](https://worldview.earthdata.nasa.gov)
 
-![TripEase Banner](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+[![CI-CD](https://github.com/nasa-gibs/worldview/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/nasa-gibs/worldview/actions/workflows/ci-cd.yml)
 
-## 🌟 Features
+Interactive interface for browsing full-resolution, global satellite imagery.
 
-### 🌤️ Weather Intelligence
-- **Real-time Weather Data**: Current conditions with detailed metrics
-- **5-Day & 30-Day Forecasts**: Extended weather predictions for better planning
-- **Air Quality Monitoring**: Pollution levels and health recommendations
-- **UV Index Tracking**: Sun protection guidance with real-time updates
-- **Interactive Weather Maps**: Visual weather patterns and storm tracking
+## Background
 
-### 🗺️ Interactive Maps
-- **Dynamic Location Search**: Find any location worldwide
-- **Weather Overlay**: Visual weather data on interactive maps
-- **Population Density**: Demographic insights for travel planning
-- **Local Attractions**: Discover points of interest near your destination
+This app from NASA's [ESDIS](https://earthdata.nasa.gov/esdis) provides the
+capability to interactively browse over 1000 global, full-resolution satellite
+imagery layers on desktop and mobile devices. Many of the imagery layers are
+updated daily and are within three hours of observation - showing the entire Earth as it is
+"right now". This supports time-critical applications such as wildfire
+management, air quality measurements, and flood monitoring. Some satellite
+imagery layers span almost 30 years, providing a long term view of our dynamic
+planet. The underlying data is available for download, and Arctic and Antarctic
+views of several imagery layers are available for a “full globe” perspective. Geostationary imagery layers are also now available. These are provided in ten minute increments for the last 90 days. These full disk hemispheric views allow for almost real-time viewing of changes occurring around most of the world.
 
-### 🤖 AI Travel Assistant
-- **Smart Recommendations**: AI-powered vacation suggestions
-- **Personalized Itineraries**: Custom travel plans based on preferences
-- **Local Insights**: Connect with locals and get authentic recommendations
-- **Travel Chatbot**: 24/7 AI assistance for travel queries
+Worldview uses [OpenLayers](http://openlayers.org/) to display imagery from the
+[Global Imagery Browse Services (GIBS)](https://earthdata.nasa.gov/gibs). This
+imagery can also be used [with libraries such as Leaflet, Cesium, Google Maps](https://nasa-gibs.github.io/gibs-api-docs/map-library-usage/)
+or [custom GDAL scripts](https://nasa-gibs.github.io/gibs-api-docs/map-library-usage/#gdal).
+We encourage interested developers to fork Worldview or build their own clients
+using GIBS services.
 
-### 🏨 Travel Services
-- **Hotel Booking Integration**: Seamless accommodation booking
-- **Local Contact Network**: Connect with verified local guides
-- **Vacation Planning**: Comprehensive trip planning tools
+Check out our [roadmap](https://github.com/orgs/nasa-gibs/projects/3/views/1)
+to see what we're working on and follow our [blog](https://wiki.earthdata.nasa.gov/pages/viewrecentblogposts.action?key=GIBS)
+to find out the latest features and imagery available.
 
-## 🚀 Quick Start
+## Install
 
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
-- MongoDB database
-- API keys (see Environment Variables section)
+This project uses Node.JS. See the [dependencies](#dependencies) section for more information.
 
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/overhelmingcoder/TripEase.git
-   cd TripEase
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
-
-3. **Set up environment variables**
-   ```bash
-   cp env.example .env.local
-   # Edit .env.local with your API keys
-   ```
-
-4. **Run the development server**
 ```bash
-npm run dev
-# or
-yarn dev
-   ```
-
-5. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
-
-## 🔐 Environment Variables
-
-Create a `.env.local` file in the root directory with the following variables:
-
-```env
-# Weather API Configuration
-OPENWEATHER_API_KEY=your_openweather_api_key_here
-
-# NextAuth Configuration
-NEXTAUTH_SECRET=your_nextauth_secret_here
-NEXTAUTH_URL=http://localhost:3000
-
-# Database Configuration
-MONGODB_URI=your_mongodb_connection_string_here
-
-# AI Configuration
-GEMINI_API_KEY=your_gemini_api_key_here
-
-# Mapbox Configuration (optional)
-MAPBOX_ACCESS_TOKEN=your_mapbox_access_token_here
-
-# NASA API Configuration (optional)
-NASA_API_KEY=your_nasa_api_key_here
+git clone https://github.com/nasa-gibs/worldview.git
+cd worldview
+npm ci
 ```
 
-### API Keys Setup
+View the [Configuration](doc/config/configuration.md) section for information on how to install the official NASA Worldview configuration, or to add your own custom configuration.
 
-1. **OpenWeather API**: Get your free API key at [OpenWeatherMap](https://openweathermap.org/api)
-2. **Google Gemini AI**: Obtain your API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
-3. **MongoDB**: Set up a free cluster at [MongoDB Atlas](https://www.mongodb.com/atlas)
-4. **Mapbox** (optional): Get your token at [Mapbox](https://www.mapbox.com/)
-5. **NASA API** (optional): Register at [NASA API Portal](https://api.nasa.gov/)
+### Dependencies
 
-## 🚀 Deployment
+The following are required to install and run Worldview:
 
-### Vercel (Recommended)
+- [Node LTS](https://nodejs.org/en/download/)
+  - **Note:** Ubuntu users may run into issues with the `node` command not being available. See [this question on StackOverflow](https://stackoverflow.com/q/18130164/417629) for possible solutions.
 
-1. **Connect your GitHub repository to Vercel**
-2. **Set environment variables in Vercel dashboard**
-3. **Deploy automatically on every push to main**
+Windows users will also need the following:
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/overhelmingcoder/TripEase)
+- [Git Bash](https://git-scm.com/downloads)
 
-### Manual Deployment
+
+## Usage
 
 ```bash
-# Build the application
 npm run build
-
-# Start production server
 npm start
 ```
 
-## 📦 Tech Stack
+Navigate to [`http://localhost:3000`](http://localhost:3000) in a browser. To stop Worldview, press Control+C in the terminal.
 
-### Frontend
-- **Next.js 14** - React framework with App Router
-- **TypeScript** - Type-safe JavaScript
-- **Tailwind CSS** - Utility-first CSS framework
-- **Framer Motion** - Animation library
-- **Radix UI** - Accessible component primitives
-- **Lucide React** - Beautiful icons
+See [Developing](doc/developing.md) for more usage details.
 
-### Backend & APIs
-- **Next.js API Routes** - Serverless functions
-- **NextAuth.js** - Authentication
-- **MongoDB** - Database
-- **Mongoose** - MongoDB object modeling
+## Updates
 
-### External Services
-- **OpenWeather API** - Weather data
-- **Google Gemini AI** - AI-powered recommendations
-- **Mapbox** - Interactive maps
-- **NASA APIs** - Satellite imagery and data
+To update Worldview, pull down any branch or tag from GitHub. From the `main` branch (default), to update to the latest stable version of Worldview, run `git pull`.
 
-### Development Tools
-- **ESLint** - Code linting
-- **Prettier** - Code formatting
-- **TypeScript** - Static type checking
+**Note:** This project uses [Semantic Versioning](https://semver.org/). Updates to the major version number in [package.json](package.json) indicate a breaking change; _update with caution_.
 
-## 🧪 Testing & CI/CD
+## Other Information
 
-### Running Tests
-```bash
-# Run linting
-npm run lint
+- [Configuration](doc/config/configuration.md)
+- [Custom Branding](doc/branding.md)
+- [Optional Features](doc/features.md)
+- [Developing](doc/developing.md)
+- [Testing](doc/testing.md)
+- [URL Parameters](doc/url_parameters.md)
+- [Uploading](doc/upload.md)
+- [Docker](doc/docker.md)
+- [Data Download (Smart Handoffs)](doc/smart_handoffs.md)
+- [Embedding](doc/embed.md)
 
-# Type checking
-npm run type-check
+## Contact
 
-# Build verification
-npm run build
-```
+Contact us via GitHub or by sending an email to
+[earthdata-support@nasa.gov](mailto:earthdata-support@nasa.gov).
 
-### GitHub Actions
-The repository includes automated CI/CD workflows:
-- **Code Quality**: ESLint and TypeScript checks
-- **Build Verification**: Ensures the app builds successfully
-- **Deployment**: Automatic deployment to Vercel on main branch
+## Contribute
 
-## 📁 Project Structure
+We welcome your contributions! Feel free to [open an issue](https://github.com/nasa-gibs/worldview/issues/new/choose) or [submit a PR](https://github.com/nasa-gibs/worldview/compare).
 
-```
-TripEase/
-├── app/                    # Next.js 14 App Router
-│   ├── api/               # API routes
-│   ├── Components/        # React components
-│   ├── context/           # React context providers
-│   ├── dashboard/         # Dashboard pages
-│   └── utils/             # Utility functions
-├── components/            # Reusable UI components
-├── lib/                   # Library configurations
-├── models/                # Database models
-├── types/                 # TypeScript type definitions
-└── public/                # Static assets
-```
+Please review [CONTRIBUTING.md](.github/CONTRIBUTING.md) for contribution guidelines before getting started.
 
-## 🤝 Contributing
+## License
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
-### Development Workflow
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **OpenWeatherMap** for comprehensive weather data
-- **Google Gemini** for AI-powered recommendations
-- **Mapbox** for beautiful interactive maps
-- **NASA** for satellite imagery and environmental data
-- **Vercel** for seamless deployment platform
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/overhelmingcoder/TripEase/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/overhelmingcoder/TripEase/discussions)
-- **Email**: [Contact Us](mailto:support@tripease.app)
-
-## 🌟 Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=overhelmingcoder/TripEase&type=Date)](https://star-history.com/#overhelmingcoder/TripEase&Date)
-
----
-
-<div align="center">
-  <p>Made with ❤️ by the TripEase Team</p>
-  <p>
-    <a href="https://github.com/overhelmingcoder/TripEase">⭐ Star us on GitHub</a> •
-    <a href="https://twitter.com/tripease">🐦 Follow us on Twitter</a> •
-    <a href="https://tripease.app">🌐 Visit our website</a>
-  </p>
-</div>
+NASA-1.3 (See [LICENSE.md](LICENSE.md))
