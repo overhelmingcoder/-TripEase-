@@ -7,6 +7,8 @@ TripEase is a Next.js 14 weather and travel assistant powered by AI. Built with 
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
+## 240sec of glory:  https://youtu.be/rfdk6j8K63k?si=0Yi7aQxQhhbZ5VIZ
+
 ## 🌟 Features
 
 ### 🌤️ Weather Intelligence
